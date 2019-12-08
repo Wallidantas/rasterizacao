@@ -82,17 +82,21 @@ temp_init_dda = clock();                   // inicia a contagem do tempo
  for(int s = 1; s < 100; s++){             // um for para fazer N iterações
         int dx=x2-x1, dy=Y2-Y1;            // declaração de variaveis
         float y=Y1,m;
+        int x;
+        x=x1;
         m =(float) dy/dx;                 // calculo do M
 
         glBegin(GL_POINTS);                 // parametros para gerar os pontos
         glColor3d(1,0,0);                   // cor da ponto - Vermelha
         glVertex2d(x1,Y1);                  //posição inicial e final sem adicionar + 10
-
-        for(int x=x1; x<=x2;x++){          // implementação do algoritmo do DDA
-            x++;                           // onde sempre acrescentamos +1 no x
-            y=Y1+m;                        // o no y sempre pegamos o y inicial mais o valor do M
-            glVertex2d(round(x),round(y));
-        }
+        
+         while (x!=x2)                   // implementação do algoritmo do DDA
+                {
+                x++;                        // onde sempre acrescentamos +1 no x
+                y=y+m;                      // o no y sempre pegamos o y inicial mais o valor do M
+                glVertex2d(round(x),round(y));
+            }
+       
 
         glEnd();                               //Fim da fun��o que gera os pontos
         glFlush();
